@@ -1,0 +1,18 @@
+.action-category{
+    display: flex;
+    gap: 20px;
+    /* overflow-x: scroll; */
+    width: 100vw;
+    overflow: hidden;
+} 
+
+.action-category p{
+    font-size: 20px;
+    color: violet;
+    margin-top: -30px;
+}
+
+.rating{
+    font-size: 20px;
+    color: violet;
+}
