@@ -1,10 +1,27 @@
 import React from 'react'
+import Card from '../components/MoviesCard/Card'
+import useMoviesDetails from "../components/services/fetch-movies";
 
 const Thriller = () => {
+    const { loading, moviesDetail, error } = useMoviesDetails('?genre=thriller');
+    const thrillerMovies = moviesDetail?.data?.movies;
+
     return (
-        <div>
-            Thriller
-        </div>
+        <>
+            {
+                loading ? <p className="Loading">Loading.......</p> : error ? <p className='error'>{error}</p> : <>
+                    <p className="action-cat">Thriller Movies</p>
+                    <div className="sec__one">
+
+                        {thrillerMovies?.map((item) => {
+                            return <Card key={item.id} rating={item?.rating} title={item?.title} image={item?.medium_cover_image} />
+                        })}
+
+                    </div>
+                </>
+            }
+
+        </>
     )
 }
 

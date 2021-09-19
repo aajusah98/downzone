@@ -44,7 +44,7 @@ const Navbar = () => {
                     {/* Add Logo  */}
                     <div className="header__middle__logo">
                         <NavLink exact activeClassName='is-active' to="/">
-                            <img src="" alt="logo" />
+                            <img src="./logo.png" alt="logo" />
                         </NavLink>
                     </div>
 

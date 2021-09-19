@@ -20,7 +20,7 @@ const useMoviesDetails = (condition) => {
         };
 
         fetchMoviesDetail();
-    }, []);
+    }, [condition]);
 
     return { loading, moviesDetail, error };
 };

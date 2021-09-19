@@ -1,0 +1,6 @@
+.sec__one{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 38px;
+    justify-content: center;
+}

@@ -1,10 +1,14 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 .card {
-    box-shadow: 0 4px 8px 0 rgba(255, 210, 210, 0.2);
-    transition: 0.3s;
-    width: 400px;
-    border-radius: 5px;
-    background-color: violet;
+  box-shadow: 0 4px 8px 0 rgb(255 210 210 / 20%);
+  transition: 0.3s;
+  border-radius: 5px;
+  background-color: #1f1f1f;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 450px;
+  object-fit: fill;
+  width: 300px;
   }
   
   .card:hover {
@@ -13,20 +17,26 @@
   
   .container {
     padding: 2px 16px;
-    width:100%;
+   
   }
   .card img{
     border-radius: 5px 5px 0 0;
+    height: 100%; 
+    width: 100%; 
+    object-fit: contain;
   }
 
   .movie-name{
     font-size: 25px;
     color: white;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: -6px;
   }
 
   .rating{
-    font-size: 15px;
+    font-size: 40px;
     color: white;
+    margin-left: 14px;
   }
 
   .likes{
@@ -43,3 +53,34 @@
     font-size: 15px;
     color: white;
   }
+
+  .img-wrapper{
+    height: 200px;
+  }
+  .icon-rating{
+    color: tomato;
+    font-size: 60px;
+  }
+
+  .rating-wrap{
+    display: flex;
+  }
+
+  .rating-wrap span{
+    margin-top: 35px;
+  }
+
+  .btn-wrap{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 20px 0px 20px;
+  }
+
+  .btn{
+    width: 100px;
+    height: 50px;
+    border-radius: 10%;
+    color: white;
+    background-color: #120101;
+    font-size: 13px;
+}

@@ -4,7 +4,6 @@ import useMoviesDetails from "../services/fetch-movies";
 import './actionMovies.css'
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 
-
 function sideScroll(element, speed, distance, step) {
     let scrollAmount = 0;
     const slideTimer = setInterval(() => {
@@ -16,22 +15,24 @@ function sideScroll(element, speed, distance, step) {
     }, speed);
 }
 
-const ActionMovies = () => {
+
+
+const DramaMovies = () => {
 
     const allDataRef = useRef(null);
-    const { loading, moviesDetail, error } = useMoviesDetails('?genre=action&&limit=10');
-    const actionMovies = moviesDetail?.data?.movies;
+    const { loading, moviesDetail, error } = useMoviesDetails('?genre=drama&&limit=10');
+    const dramaMovies = moviesDetail?.data?.movies;
 
     return (
         <>
             <div className="action-movie-wrap" >
                 {
                     loading ? <p className="Loading">Loading.......</p> : error ? <p className='error'>{error}</p> : <>
-                        <p className="action-cat">Action</p>
+                        <p className="action-cat">Drama</p>
                         <FaArrowAltCircleLeft className='left-arrow-category' onClick={() => { sideScroll(allDataRef.current, 100, 350, -80); }} />
                         <div className="action-category" ref={allDataRef}>
 
-                            {actionMovies?.map((item) => {
+                            {dramaMovies?.map((item) => {
                                 return <Card key={item.id} rating={item?.rating} title={item?.title} image={item?.medium_cover_image} />
                             })}
                             <FaArrowAltCircleRight className='right-arrow-category' onClick={() => { sideScroll(allDataRef.current, 100, 350, 80); }} />
@@ -48,4 +49,4 @@ const ActionMovies = () => {
     )
 }
 
-export default ActionMovies
+export default DramaMovies

@@ -1,20 +1,27 @@
 import React from 'react'
 import './card.css'
+import { AiFillStar } from 'react-icons/ai';
+
+
 
 const Card = ({ title, image, rating }) => {
     return (
-        <div>
-            <div className="card">
-                <img src={image} alt="Avatar" />
-                <div className="container">
+        <>
+            <div className="card" style={{ backgroundImage: `url(${image})` }}>
+                {/* <img src={image} alt="Avatar" /> */}
+                <div className="container"  >
                     <h4 className="movie-name">{title}</h4>
-                    <p className='rating'>{rating}</p>
-                    <p className="likes">Likes </p>
-                    <button className="add-watch-list">add to watch list</button>
-                    <button className="add-watched">mark movie as watched</button>
+                    <div className="rating-wrap">
+                        <span><AiFillStar className="icon-rating" /></span>
+                        <p className="rating">{rating}/10</p>
+                    </div>
+                    <div className="btn-wrap">
+                        <button className="btn">add List</button>
+                        <button className="btn">Add Watched</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
