@@ -10,7 +10,7 @@ const Thriller = () => {
         <>
             {
                 loading ? <p className="Loading">Loading.......</p> : error ? <p className='error'>{error}</p> : <>
-                    <p className="action-cat">Thriller Movies</p>
+                    <p className="action-cat">Thriller</p>
                     <div className="sec__one">
 
                         {thrillerMovies?.map((item) => {
