@@ -42,7 +42,7 @@ const ThrillerMovies = () => {
                         <div className="action-category" ref={allDataRef}>
 
                             {thrillerMovies?.map((item) => {
-                                return <Card key={item.id} rating={item?.rating} title={item?.title} image={item?.medium_cover_image} />
+                                return <Card key={item.id} id={item.id} rating={item?.rating} title={item?.title} image={item?.medium_cover_image} />
                             })}
                             <FaArrowAltCircleRight className='right-arrow-category' onClick={() => { sideScroll(allDataRef.current, 100, 350, 80); }} />
 

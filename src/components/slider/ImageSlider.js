@@ -27,7 +27,7 @@ const ImageSlider = () => {
     return (
         <section className='slider'>
             {loading ? <p className="Loading">Loading.......</p> : error ? <p className='error'>{error}</p> : <>
-                <p className="action-cat">UpComing Movies</p>
+                {/* <p className="upcoming-movies">UpComing Movies</p> */}
                 <FaArrowAltCircleLeft className='left-arrow' onClick={prevSlide} />
                 <FaArrowAltCircleRight className='right-arrow' onClick={nextSlide} />
                 {SliderData.map((slide, index) => {

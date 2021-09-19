@@ -1,0 +1,21 @@
+
+footer{
+    display: flex;
+width: 100%;
+min-height: 100px;
+margin-top: 20px;
+background-color: #454545;
+justify-content: space-around;
+align-items: center;
+
+}
+
+footer>p{
+    font-size: 25px;
+    color: tomato;
+}
+
+footer>img{
+    width: auto;
+    height: 80px;
+}

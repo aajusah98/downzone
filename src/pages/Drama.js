@@ -14,7 +14,7 @@ const Drama = () => {
                     <div className="sec__one">
 
                         {dramaMovies?.map((item) => {
-                            return <Card key={item.id} rating={item?.rating} title={item?.title} image={item?.medium_cover_image} />
+                            return <Card key={item.id} id={item.id} rating={item?.rating} title={item?.title} image={item?.medium_cover_image} />
                         })}
 
                     </div>

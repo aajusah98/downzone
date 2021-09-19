@@ -9,6 +9,7 @@ import Crime from './pages/Crime';
 import Thriller from './pages/Thriller';
 import Watch_List from './pages/Watch_List';
 import MoviesDetials from './components/MoviesDetails/MoviesDetials';
+import Footer from './components/Footer/Footer';
 
 import Navbarmenu from './components/Navbar/Navbar';
 
@@ -17,7 +18,6 @@ function App() {
     <div>
       <Router basename="/">
 
-        {/* Add Menu Component */}
         <Navbarmenu />
 
         <Switch>
@@ -29,6 +29,8 @@ function App() {
           <Route path="/Watch_List" component={Watch_List} />
           <Route path="/MoviesDetails" component={MoviesDetials} />
         </Switch>
+
+        <Footer />
       </Router>
 
     </div>

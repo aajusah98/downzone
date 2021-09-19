@@ -13,6 +13,8 @@
   
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(247, 179, 179, 0.2);
+    background-color: rgb(255, 8, 8);
+    transform: scale(1.2);
   }
   
   .container {
@@ -31,6 +33,7 @@
     color: white;
     font-family: 'Inter', sans-serif;
     margin-bottom: -6px;
+    cursor: pointer;
   }
 
   .rating{
@@ -83,4 +86,8 @@
     color: white;
     background-color: #830000;
     font-size: 13px;
+    cursor: pointer;
+}
+.btn:hover{
+  transform: scale(1.2);
 }

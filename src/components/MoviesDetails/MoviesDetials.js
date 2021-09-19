@@ -2,82 +2,76 @@ import React from 'react'
 import './moviesDetaols.css';
 import { useLocation } from 'react-router';
 import { AiFillStar } from 'react-icons/ai';
+import useMoviesDetails from "../services/fetch-movies";
+import RelatedMovies from '../MoviesCategory/RelatedMovies';
 
-
-// https://yts.mx/api/v2/list_movies.json/${condition}
 const MoviesDetials = () => {
 
     const location = useLocation();
     const id = location.state;
+    const { loading, moviesDetail, error } = useMoviesDetails(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`);
+    const movieDetails = moviesDetail?.data?.movie;
+
     return (
         <>
-            <section className="movie-details-wrap">
-                <div className="movie-details-section-wrap">
-                    <div className="justify-center-wrap font40-white-text movie-title">
-                        <p>3 Idiot</p>
-                    </div>
-
-                    <div className="movie-rating-genre-wrap">
-                        <div className="justify-center-wrap font40-white-text movie-rating ">
-                            <span><AiFillStar className="icon-rating" /></span> <p>9/10</p>
-                        </div>
-                        <div className="justify-center-wrap font40-white-text movie-year">
-                            <p>Year : 2017</p>
-                        </div>
-
-                        <div className="justify-center-wrap font40-white-text movie-genre">
-                            <p>Genre:</p>
-                            <div className="gener-name">
-                                Action
+            {
+                loading ? <p className="Loading">Loading.......</p> : error ? <p className='error'>{error}</p> : <>
+                    <section className="movie-details-wrap">
+                        <div className="movie-details-section-wrap">
+                            <div className="justify-center-wrap font40-white-text movie-title">
+                                <p>{movieDetails?.title} {id}</p>
                             </div>
-                            <div className="gener-name">
-                                Action
+
+                            <div className="movie-rating-genre-wrap">
+                                <div className="justify-center-wrap font40-white-text movie-rating ">
+                                    <span><AiFillStar className="icon-rating" /></span> <p>{movieDetails?.rating}/10</p>
+                                </div>
+                                <div className="justify-center-wrap font40-white-text movie-year">
+                                    <p>Year : {movieDetails?.year}</p>
+                                </div>
+
+                                <div className="justify-center-wrap font40-white-text movie-genre">
+                                    <p>Genre:</p>
+
+                                    {movieDetails?.genres?.map((item) => {
+                                        return <div key={item} className="gener-name"> {item}</div>
+                                    })}
+                                </div>
                             </div>
-                            <div className="gener-name">
-                                Action
+
+                            <div className="justify-center-wrap font40-white-text movie-description">
+                                <h2> About Movie </h2>
+                                <p>{movieDetails?.description_full}</p>
                             </div>
+
+                            <div className="add-btn-wrap-detaiils">
+                                <button className="btn">add List</button>
+                                <button className="btn">Add Watched</button>
+                            </div>
+
                         </div>
-                    </div>
 
-                    <div className="justify-center-wrap font40-white-text movie-description">
-                        <h2> About Movie </h2>
-                        <p>HelloHelloHelloHelloHelloHelloHelloHelloHello
-                            HelloHelloHelloHelloHelloHelloHelloHelloHelloHello
-                            HelloHelloHelloHelloHello
-                        </p>
-                    </div>
+                        <div className="movie-details-tariler-wrap">
+                            <iframe width="100%" height="100%" className="iframe" src={`https://www.youtube.com/embed/${movieDetails?.yt_trailer_code}`} title="YouTube video player"></iframe>
+                        </div>
+                    </section>
 
-                    <div className="add-btn-wrap-detaiils">
-                        <button className="btn">add List</button>
-                        <button className="btn">Add Watched</button>
-                    </div>
+                    <section className="bottom-wrapper">
+                        <div className="download_link">
+                            <p>Download {movieDetails?.title}</p>
+                            {movieDetails?.torrents?.map((links) => {
+                                return <div key={links} className="justify-center-wrap font40-white-text download_name">
+                                    <p>Quality : {links?.quality}, Size:{links?.size}</p>
+                                    <a href={links.url}>{links.url}</a>
+                                </div>
+                            })}
+                        </div>
+                        <p className="suggestion">You May Also Like</p>
+                        <RelatedMovies id={id} />
+                    </section>
+                </>
+            }
 
-                </div>
-
-                <div className="movie-details-tariler-wrap">
-                    <iframe width="100%" height="100%" className="iframe" src="https://www.youtube.com/embed/0mVbNp1ol_w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </section>
-
-            <section className="bottom-wrapper">
-                <div className="download-quality-wrap">
-                    <div className="justify-center-wrap font40-white-text download_name">
-                        <p>Download : 3 Idio </p>
-                    </div>
-
-                    <div className="justify-center-wrap font40-white-text download_name">
-                        <p>Quality : 1080p, Size:1.3gb</p>
-                    </div>
-
-                </div>
-
-                <div className="download_link">
-                    <p>Download Links</p>
-                    <a href="#">Ajat</a>
-                    <a href="#">Ajat</a>
-                    <a href="#">Ajat</a>
-                </div>
-            </section>
         </>
     )
 }

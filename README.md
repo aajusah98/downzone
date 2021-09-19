@@ -23,4 +23,8 @@
 #Thriller Movies Page DownZone
 ![Screenshot](thriller_page.png)
 
+#Movies Details Page Added
+
+![Screenshot](details.png)
+
 

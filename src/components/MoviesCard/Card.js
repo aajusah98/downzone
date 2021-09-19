@@ -16,10 +16,10 @@ const Card = ({ id, title, image, rating }) => {
 
     return (
         <>
-            <div onClick={movieDetails} className="card" style={{ backgroundImage: `url(${image})` }}>
+            <div className="card" style={{ backgroundImage: `url(${image})` }}>
                 {/* <img src={image} alt="Avatar" /> */}
                 <div className="container"  >
-                    <h4 className="movie-name">{title}</h4>
+                    <h4 className="movie-name" onClick={movieDetails}>{title}</h4>
                     <div className="rating-wrap">
                         <span><AiFillStar className="icon-rating" /></span>
                         <p className="rating">{rating}/10</p>
