@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.Paragramp{
+    font-size: large;
+    color: wheat;
+}
+.movie-details-wrap{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    grid-auto-rows: minmax(200px,auto);
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 40px;
+}
+
+.movie-details-section-wrap{
+    display: flex;
+    flex-direction: column;
+    border-radius: 36px;
+    grid-gap: 20px;
+    gap: 20px;
+    background-color: #2f2b2a;
+    box-shadow: 6px 3px #ec0e0e, -1em 0 0.4em #642f2f;
+}
+
+.movie-details-tariler-wrap{
+    display: flex;
+    flex-direction: column;
+    border-radius: 36px;
+    grid-gap: 20px;
+    gap: 20px;
+    background-color: #2f2b2a;
+    box-shadow: 6px 3px #ec0e0e, -1em 0 0.4em #642f2f;
+    justify-content: center;
+    justify-items: center;
+}
+
+.justify-center-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.font40-white-text{
+    font-size: 40px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+
+.movie-title > p{
+    color: #353f3a;
+    background-color: #e45410;
+    border-radius: 17px 0px;
+    font-weight: 700; 
+    padding: 10px;
+}
+
+.movie-year > p{
+    color: #e68411;
+    padding: 11px;
+    font-weight: 700;
+ }
+    
+.movie-rating>p{
+    color: #e68411;
+    padding: 11px;
+    font-weight: 700;
+}
+
+.movie-genre{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.gener-name{
+    color: #353f3a;
+    background-color: #ec0000;
+    border-radius: 17px 0px;
+    font-weight: 700; 
+    padding: 10px;
+}
+
+.movie-genre > p{
+    color: #e68411;
+    padding: 11px;
+    font-weight: 700;
+ }
+
+ .movie-description p{
+ font-size: 28px;
+    text-align: center;
+    padding: 20px;
+    color: #d17a14;
+ }
+
+ .movie-description h2{
+    font-size: 28px;
+    text-align: center;
+    color: #d17a14;
+    margin-bottom: -21px;
+    }
+
+   .add-btn-wrap-detaiils{
+        display: flex;
+        gap: 37px;
+        align-content: center;
+        justify-content: center;
+        margin-bottom: 27px;
+    }
+
+    .iframe{
+        border-radius: 3%;
+    }
+
+    .bottom-wrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+.download-quality-wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 163px;
+    width: 90%;
+    border-radius: 36px;
+    gap: 20px;
+    background-color: #2f2b2a;
+    box-shadow: 6px 3px #ec0e0e, -1em 0 0.4em #642f2f;
+    }
+
+    .download_name p{
+        margin: 33px;
+    color: #80c72d;
+    font-weight: 600;
+    }
+
+    .download_link{
+        display: flex;
+        flex-direction: column;
+        background-color: #2f2b2a;
+        width: 90%;
+        min-height: 100px;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 6px 3px #6a5f10, -1em 0 0.4em #a1db75;
+        border-radius: 36px 6px;
+        margin-bottom: 50px;
+    }
+
+    .download_link a{
+        font-size: 25px;
+        color: #27ff27;
+        font-family: monospace;
+        font-weight: 500;
+        margin: 8px;
+
+    }
+
+    .download_link p{
+        font-size: large;
+        color: #353f3a;
+        background-color: #e45410;
+        border-radius: 17px 0px;
+        font-weight: 700; 
+        padding: 10px;
+    }

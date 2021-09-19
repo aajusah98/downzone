@@ -3,6 +3,7 @@ import Card from '../MoviesCard/Card'
 import useMoviesDetails from "../services/fetch-movies";
 import './actionMovies.css'
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+import { useHistory } from 'react-router';
 
 function sideScroll(element, speed, distance, step) {
     let scrollAmount = 0;
@@ -20,15 +21,21 @@ function sideScroll(element, speed, distance, step) {
 const CrimeMovies = () => {
 
     const allDataRef = useRef(null);
-    const { loading, moviesDetail, error } = useMoviesDetails('?genre=crime&&limit=10');
+    const { loading, moviesDetail, error } = useMoviesDetails('https://yts.mx/api/v2/list_movies.json/?genre=crime&&limit=10');
     const crimeMovies = moviesDetail?.data?.movies;
+    const history = useHistory();
+    function seemoreButton() {
+        history.push('/Crime');
+    }
 
     return (
         <>
             <div className="action-movie-wrap" >
                 {
                     loading ? <p className="Loading">Loading.......</p> : error ? <p className='error'>{error}</p> : <>
-                        <p className="action-cat">Crime</p>
+                        <p className="action-cat">Crime
+                            <button className="seeMorebtn" onClick={seemoreButton} style={{ color: 'white', fontSize: '20px' }}>See More</button>
+                        </p>
                         <FaArrowAltCircleLeft className='left-arrow-category' onClick={() => { sideScroll(allDataRef.current, 100, 350, -80); }} />
                         <div className="action-category" ref={allDataRef}>
 

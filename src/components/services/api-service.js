@@ -1,9 +1,7 @@
 import axios from "axios";
 export const getMoviesDetails = async (condition) => {
     try {
-        const response = await axios.get(
-            `https://yts.mx/api/v2/list_movies.json/${condition}`
-        );
+        const response = await axios.get(condition);
         const data = await response.data;
         return {
             data: data,

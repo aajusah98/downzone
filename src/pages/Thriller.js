@@ -3,7 +3,7 @@ import Card from '../components/MoviesCard/Card'
 import useMoviesDetails from "../components/services/fetch-movies";
 
 const Thriller = () => {
-    const { loading, moviesDetail, error } = useMoviesDetails('?genre=thriller');
+    const { loading, moviesDetail, error } = useMoviesDetails('https://yts.mx/api/v2/list_movies.json/?genre=thriller');
     const thrillerMovies = moviesDetail?.data?.movies;
 
     return (

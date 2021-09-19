@@ -1,13 +1,22 @@
 import React from 'react'
 import './card.css'
 import { AiFillStar } from 'react-icons/ai';
+import { useHistory } from 'react-router';
 
 
 
-const Card = ({ title, image, rating }) => {
+const Card = ({ id, title, image, rating }) => {
+
+    const history = useHistory();
+
+    function movieDetails() {
+        history.push({ pathname: '/MoviesDetails', state: id });
+
+    }
+
     return (
         <>
-            <div className="card" style={{ backgroundImage: `url(${image})` }}>
+            <div onClick={movieDetails} className="card" style={{ backgroundImage: `url(${image})` }}>
                 {/* <img src={image} alt="Avatar" /> */}
                 <div className="container"  >
                     <h4 className="movie-name">{title}</h4>
