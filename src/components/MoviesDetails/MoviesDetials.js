@@ -2,6 +2,8 @@ import React from 'react'
 import './moviesDetaols.css';
 import { useLocation } from 'react-router';
 import { AiFillStar } from 'react-icons/ai';
+import { AiFillLike } from 'react-icons/ai';
+import { AiOutlineDownload } from 'react-icons/ai';
 import useMoviesDetails from "../services/fetch-movies";
 import RelatedMovies from '../MoviesCategory/RelatedMovies';
 
@@ -11,6 +13,7 @@ const MoviesDetials = () => {
     const id = location.state;
     const { loading, moviesDetail, error } = useMoviesDetails(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`);
     const movieDetails = moviesDetail?.data?.movie;
+    console.log(movieDetails);
 
     return (
         <>
@@ -19,13 +22,22 @@ const MoviesDetials = () => {
                     <section className="movie-details-wrap">
                         <div className="movie-details-section-wrap">
                             <div className="justify-center-wrap font40-white-text movie-title">
-                                <p>{movieDetails?.title} {id}</p>
+                                <p>{movieDetails?.title}</p>
                             </div>
 
                             <div className="movie-rating-genre-wrap">
                                 <div className="justify-center-wrap font40-white-text movie-rating ">
                                     <span><AiFillStar className="icon-rating" /></span> <p>{movieDetails?.rating}/10</p>
+
+                                    <div className="justify-center-wrap font40-white-text movie-rating ">
+                                        <span><AiFillLike className="icon-rating" /></span> <p>{movieDetails?.like_count}</p>
+                                    </div>
+
+                                    <div className="justify-center-wrap font40-white-text movie-rating ">
+                                        <span><AiOutlineDownload className="icon-rating" /></span> <p>{movieDetails?.download_count}</p>
+                                    </div>
                                 </div>
+
                                 <div className="justify-center-wrap font40-white-text movie-year">
                                     <p>Year : {movieDetails?.year}</p>
                                 </div>
@@ -43,12 +55,6 @@ const MoviesDetials = () => {
                                 <h2> About Movie </h2>
                                 <p>{movieDetails?.description_full}</p>
                             </div>
-
-                            <div className="add-btn-wrap-detaiils">
-                                <button className="btn">add List</button>
-                                <button className="btn">Add Watched</button>
-                            </div>
-
                         </div>
 
                         <div className="movie-details-tariler-wrap">

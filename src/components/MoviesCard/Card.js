@@ -2,47 +2,72 @@ import React from 'react'
 import './card.css'
 import { AiFillStar } from 'react-icons/ai';
 import { useHistory } from 'react-router';
+import useLocalStorage from '../../components/Hooks/UseLocalStorage'
 
 
 
-const Card = ({ id, title, image, rating, remove }) => {
+const Card = ({ id, title, image, rating, remove, removeFromWatchList }) => {
+    const [data, setData] = useLocalStorage('addToWatchList', []);
+    const [markedData, setMarkedData] = useLocalStorage('addToMarkData', []);
 
+
+    console.log("remove", remove)
     const history = useHistory();
 
     function movieDetails() {
         history.push({ pathname: '/MoviesDetails', state: id });
 
     }
+    const removeFromWatchListWhileMarking = (dataToBeAdded) => {
+        if (data.length > 0) {
+            const filteredData = data?.filter(item => item?.id !== dataToBeAdded?.id);
 
+            setData([...filteredData])
+
+        }
+    }
+    const isDataAdded = (dataToAdd) => {
+        return data.some(item => item?.id === dataToAdd.id);
+    }
     const setMovieToWatchList = (dataToBeAdded) => {
         const data = JSON.parse(localStorage?.getItem('addToWatchList')) || [];
-        if (data.length > 0) {
-            const filteredData = data.find(item => item?.id === dataToBeAdded?.id);
-            if (filteredData?.id !== dataToBeAdded?.id) {
-                return localStorage.setItem('addToWatchList', JSON.stringify([...data, filteredData]))
-            }
+
+        const filteredData = data.some(item => item?.id === dataToBeAdded?.id);
+
+        if (filteredData) {
             return;
         }
-
-        return localStorage.setItem('addToWatchList', JSON.stringify([...data, { ...dataToBeAdded }]))
-
-
-
+        return setData([...data, { ...dataToBeAdded }]);
 
     }
 
-    const removeFromWatchList = (dataToBeAdded) => {
-        const data = JSON.parse(localStorage?.getItem('addToWatchList')) || [];
-        if (data.length > 0) {
-            const filteredData = data.filter(item => item?.id !== dataToBeAdded?.id);
+    const markedList = (dataToBeAdded) => {
+        if (remove === undefined) {
 
-            localStorage.setItem('addToWatchList', JSON.stringify([...filteredData]));;
-            return window.location.reload();
-
+            removeFromWatchListWhileMarking(dataToBeAdded)
+        } else {
+            removeFromWatchList(dataToBeAdded)
         }
 
 
+        const filteredData = markedData?.some(item => item?.id === dataToBeAdded?.id);
+
+        if (filteredData) {
+            return;
+        }
+        return setMarkedData([...markedData, { ...dataToBeAdded }]);
     }
+
+    const getMarkedData = (id) => {
+        return markedData?.some(item => item?.id === id);
+    }
+
+    const unMarkList = (id) => {
+        const data = markedData?.filter(item => item?.id !== id.id);
+        return setMarkedData([...data])
+    }
+
+
 
     return (
         <>
@@ -56,12 +81,25 @@ const Card = ({ id, title, image, rating, remove }) => {
                     </div>
                     <div className="btn-wrap">
 
-                        {(!remove) && <button className="btn" onClick={() => setMovieToWatchList({ id, title, image, rating, remove: true })}>Add To Watch List</button>
-                        }
+                        {!getMarkedData(id) && <>
+                            {(!isDataAdded({ id }) || remove !== undefined && !remove) &&
+                                <button className="btn"
+                                    onClick={() => setMovieToWatchList({ id, title, image, rating, remove: true })}>
+                                    Add To Watch List</button>
+                            }
 
-                        {remove && <button className="btn" onClick={() => removeFromWatchList({ id })}>Remove From Watch List</button>
+                            {(isDataAdded({ id }) && remove === undefined) &&
+                                <button className="btn"
+                                >
+                                    Added To Watch List</button>
+                            }
+
+                            {remove && <button className="btn" onClick={() => removeFromWatchList({ id })}>Remove From Watch List</button>
+                            }
+                        </>}
+
+                        {getMarkedData(id) ? <button className="btn" onClick={() => unMarkList({ id })} >UnMark As Watched</button> : <button className="btn" onClick={() => markedList({ id })}>Mark As Watched</button>
                         }
-                        <button className="btn">Mark As Watched</button>
                     </div>
                 </div>
             </div>
